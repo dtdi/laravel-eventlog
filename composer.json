@@ -1,10 +1,14 @@
 {
   "name": "dtdi/laravel-eventlog",
-  "description": "This is my package laravel-eventlog",
+  "description": "A package for exporting event log tables to Process Mining Logs",
   "keywords": [
-    "dtdi",
+    "process mining",
+    "process science",
     "laravel",
-    "laravel-eventlog"
+    "laravel-eventlog",
+    "OCEL",
+    "XES",
+    "event log"
   ],
   "homepage": "https://github.com/dtdi/laravel-eventlog",
   "license": "MIT",

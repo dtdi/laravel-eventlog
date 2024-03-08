@@ -11,11 +11,10 @@ Implements [OCEL 1.0](https://www.ocel-standard.org/1.0/)
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-eventlog.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-eventlog)
+[<img src="https://dtdi.de/ads/laravel-eventlog.png" width="419px" />](https://dtdi.de/i.php?repo=laravel-eventlog)
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/dtdi)
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -36,15 +35,29 @@ This is the contents of the published config file:
 
 ```php
 return [
+
+    /*
+     * This model will be used as base event.
+     * and extend Illuminate\Database\Eloquent\Model.
+     */
+    'event_model' => null,
+
+    'event_id' => 'id',
+    'timestamp' => 'created_at',
+    'event_name' => 'action_type',
+
 ];
 ```
 
 ## Usage
 
+In code
+
 ```php
-$eventlog = new Dtdi\Eventlog();
-echo $eventlog->echoPhrase('Hello, Dtdi!');
+$logPath = eventlog()->setupForSnipeIt()->setLogExporter(new OCEL1)->write();
 ```
+
+Using the `php artisan pm:dump` command.
 
 ## Testing
 
