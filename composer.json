@@ -1,85 +1,88 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
-    "keywords": [
-        ":vendor_name",
-        "laravel",
-        ":package_slug"
+  "name": "dtdi/laravel-eventlog",
+  "description": "This is my package laravel-eventlog",
+  "keywords": [
+    "dtdi",
+    "laravel",
+    "laravel-eventlog"
+  ],
+  "homepage": "https://github.com/dtdi/laravel-eventlog",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tobias Fehrer",
+      "email": "tobias@dtdi.de",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "illuminate/contracts": "^8.0|^9.0|^10.0",
+    "spatie/laravel-package-tools": "^1.8.0"
+  },
+  "require-dev": {
+    "larastan/larastan": "^2.0.1",
+    "laravel/pint": "^1.0",
+    "nunomaduro/collision": "^7.8",
+    "orchestra/testbench": "^8.8",
+    "pestphp/pest": "^2.20",
+    "pestphp/pest-plugin-arch": "^2.5",
+    "pestphp/pest-plugin-laravel": "^2.0",
+    "phpstan/extension-installer": "^1.1",
+    "phpstan/phpstan-deprecation-rules": "^1.0",
+    "phpstan/phpstan-phpunit": "^1.0",
+    "spatie/laravel-ray": "^1.26",
+    "wol-soft/php-json-schema-model-generator": "^0.24.0"
+  },
+  "autoload": {
+    "files": [
+      "src/helpers.php"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": ":author_name",
-            "email": "author@domain.com",
-            "role": "Developer"
-        }
+    "psr-4": {
+      "Dtdi\\Eventlog\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dtdi\\Eventlog\\Tests\\": "tests/",
+      "Workbench\\App\\": "workbench/app/"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": "@composer run prepare",
+    "clear": "@php vendor/bin/testbench package:purge-laravel-eventlog --ansi",
+    "prepare": "@php vendor/bin/testbench package:discover --ansi",
+    "build": [
+      "@composer run prepare",
+      "@php vendor/bin/testbench workbench:build --ansi"
     ],
-    "require": {
-        "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.8",
-        "larastan/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.8",
-        "pestphp/pest": "^2.20",
-        "pestphp/pest-plugin-arch": "^2.5",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "spatie/laravel-ray": "^1.26"
-    },
-    "autoload": {
-        "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": [
-            "@composer run prepare",
-            "@php vendor/bin/testbench workbench:build --ansi"
-        ],
-        "start": [
-            "Composer\\Config::disableProcessTimeout",
-            "@composer run build",
-            "@php vendor/bin/testbench serve"
-        ],
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
-    },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "@composer run build",
+      "@php vendor/bin/testbench serve"
+    ],
+    "analyse": "vendor/bin/phpstan analyse",
+    "test": "vendor/bin/pest",
+    "test-coverage": "vendor/bin/pest --coverage",
+    "format": "vendor/bin/pint"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Dtdi\\Eventlog\\EventlogServiceProvider"
+      ],
+      "aliases": {
+        "Eventlog": "Dtdi\\Eventlog\\Facades\\Eventlog"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
